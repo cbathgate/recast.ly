@@ -1,13 +1,15 @@
 var VideoListEntry = (props) => (
-  <div className="video-list-entry" onClick={() => props.onVideoClick(props.video)}>
-    <div className="media-left media-middle">
-      <img className="media-object" src={props.video.snippet.thumbnails.default.url} alt="" />
+  <li className="video-list-entry list-group-item col-md-12 list-unstyled" onClick={() => props.onVideoClick(props.video)}>
+    <div className="row">
+      <div className="col-sm-4 media-left media-middle">
+        <img width="100% "className="rounded mx-auto d-block media-object img-responsive" src={props.video.snippet.thumbnails.default.url} alt="" />
+      </div>
+      <div className="col-sm-8 media-body">
+        <div className="video-list-entry-title">{props.video.snippet.title}</div>
+        <div className="video-list-entry-detail">{props.video.snippet.description}</div>
+      </div>
     </div>
-    <div className="media-body">
-      <div className="video-list-entry-title">{props.video.snippet.title}</div>
-      <div className="video-list-entry-detail">{props.video.snippet.description}</div>
-    </div>
-  </div>
+  </li>
 );
 
 // PropTypes tell other developers what `props` a component expects

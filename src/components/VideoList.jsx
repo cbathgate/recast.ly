@@ -1,7 +1,7 @@
 var VideoList = (props) => (
-  <div className="video-list media">
-    {props.videos.map((video) => <VideoListEntry onVideoClick={props.onVideoClick} video={video}/>)}
-  </div>
+    <ul className="card video-list media list-group">
+      {props.videos.map((video) => <VideoListEntry onVideoClick={props.onVideoClick} video={video}/>)}
+    </ul>
 );
 // <VideoListEntry />
 

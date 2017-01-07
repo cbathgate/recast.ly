@@ -3,7 +3,8 @@ class Search extends React.Component {
     super(props);
   }
 
-  handleChange() {
+  handleChange(event) {
+    console.log(event);
     let text = this._text;
     this.props.updateSearch(text.value);
   }
@@ -17,14 +18,17 @@ class Search extends React.Component {
 
   render() {
     return (
-      <div className="search-bar form-inline">
-        <input className="form-control" type="text" 
-                ref={(input) => this._text = input} 
-                onChange={this.handleChange.bind(this)} 
-                onSubmit={this.handleSubmit.bind(this)}/>
-        <button className="btn hidden-sm-down" type="submit">
-          <span className="glyphicon glyphicon-search"></span>
-        </button>
+      <div>
+        <form className="search-bar form-inline" onSubmit={this.handleSubmit.bind(this)}>
+          <input className="form-control" type="text" 
+                  ref={(input) => this._text = input} 
+                  onChange={this.handleChange.bind(this)} 
+                  onBlur={this.handleChange.bind(this)}
+                  onCompositionUpdate={this.handleChange.bind(this)}/>
+          <button className="btn hidden-sm-down" type="submit">
+            <span className="glyphicon glyphicon-search"></span>
+          </button>
+        </form>
       </div> 
     );
   }
