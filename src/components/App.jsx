@@ -8,8 +8,22 @@ class App extends React.Component {
     };
   }
 
-  conponentWillMount() {
-    this.props.searchYouTube();
+  youTubeSearchCallback(items) {
+    this.setState({
+      videoList: items
+    });
+  }
+
+  componentDidMount() {
+    console.log('youtube searched');
+    var options = {
+      // query: this.state.search,
+      query: 'dogs',
+      max: 5,
+      key: YOUTUBE_API_KEY
+    };
+    this.props.searchYouTube(options, this.youTubeSearchCallback.bind(this));
+    // setInterval(this.youTubeSearchCallback.bind(this), 500);
   }
 
   onVideoClick(video) {
@@ -19,7 +33,6 @@ class App extends React.Component {
   }
 
   updateSearch(newSearch) {
-    console.log(newSearch);
     this.setState({
       search: newSearch
     });

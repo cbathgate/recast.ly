@@ -19,12 +19,12 @@ class Search extends React.Component {
   render() {
     return (
       <div className="search-bar form-inline">
-        <input className="form-control" type="text" 
+        <input className="form-control" type="search" 
                 value={this.props.search} 
                 ref={(input) => this._text = input} 
                 onChange={this.handleChange.bind(this)} 
                 onSubmit={this.handleSubmit.bind(this)}/>
-        <button className="btn hidden-sm-down">
+        <button className="btn hidden-sm-down" type="sumbit">
           <span className="glyphicon glyphicon-search"></span>
         </button>
       </div> 
