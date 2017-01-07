@@ -1,16 +1,9 @@
-var VideoList = () => (
+var VideoList = (props) => (
   <div className="video-list media">
-    <VideoListEntry />
-    <VideoListEntry />
-    <VideoListEntry />
-    <VideoListEntry />
-    <VideoListEntry />
-    <VideoListEntry />
-    <VideoListEntry />
-    <VideoListEntry />
-    <VideoListEntry />
+    {props.videos.map((video) => <VideoListEntry onVideoClick={props.onVideoClick} video={video}/>)}
   </div>
 );
+// <VideoListEntry />
 
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated
