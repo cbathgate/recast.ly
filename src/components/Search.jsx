@@ -4,7 +4,6 @@ class Search extends React.Component {
   }
 
   handleChange() {
-    // event.preventDefault();
     let text = this._text;
     this.props.updateSearch(text.value);
   }
@@ -21,7 +20,6 @@ class Search extends React.Component {
       <div className="search-bar form-inline">
         <input className="form-control" type="text" 
                 ref={(input) => this._text = input} 
-
                 onChange={this.handleChange.bind(this)} 
                 onSubmit={this.handleSubmit.bind(this)}/>
         <button className="btn hidden-sm-down" type="submit">
