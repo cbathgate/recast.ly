@@ -1,36 +1,30 @@
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      video: {
-        id: {
-          videoId: '4ZAEBxGipoA'
-        },
-        snippet: {
-          thumbnails: {
-            default: {
-              url: ''
-            }
-          },
-          title: 'Hello',
-          description: 'Awful video'
-        }
-      },
-      videoList: exampleVideoData
+      video: exampleVideoData[0],
+      videoList: exampleVideoData,
+      search: ''
     };
   }
 
   onVideoClick(video) {
-    console.log('video clicked');
     this.setState({
       video: video
+    });
+  }
+
+  updateSearch(newSearch) {
+    console.log(newSearch);
+    this.setState({
+      search: newSearch
     });
   }
 
   render() {
     return (
       <div>
-        <Nav />
+        <Nav search={this.state.search} updateSearch={this.updateSearch.bind(this)}/>
         <div className="col-md-7">
           <VideoPlayer video={this.state.video} />
         </div>
