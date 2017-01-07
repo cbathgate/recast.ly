@@ -1,36 +1,47 @@
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      video: {
-        id: {
-          videoId: '4ZAEBxGipoA'
-        },
-        snippet: {
-          thumbnails: {
-            default: {
-              url: ''
-            }
-          },
-          title: 'Hello',
-          description: 'Awful video'
-        }
-      },
-      videoList: exampleVideoData
+      video: exampleVideoData[0],
+      videoList: exampleVideoData,
+      search: ''
     };
   }
 
+  youTubeSearchCallback(items) {
+    this.setState({
+      videoList: items
+    });
+  }
+
+  componentDidMount() {
+    console.log('youtube searched');
+    var options = {
+      // query: this.state.search,
+      query: 'dogs',
+      max: 5,
+      key: YOUTUBE_API_KEY
+    };
+    this.props.searchYouTube(options, this.youTubeSearchCallback.bind(this));
+    // setInterval(this.youTubeSearchCallback.bind(this), 500);
+  }
+
   onVideoClick(video) {
-    console.log('video clicked');
     this.setState({
       video: video
+    });
+  }
+
+  updateSearch(newSearch) {
+    this.setState({
+      search: newSearch
     });
   }
 
   render() {
     return (
       <div>
-        <Nav />
+        <Nav search={this.state.search} updateSearch={this.updateSearch.bind(this)}/>
         <div className="col-md-7">
           <VideoPlayer video={this.state.video} />
         </div>

@@ -7,11 +7,11 @@ var searchYouTube = (options, callback) => {
     contentType: 'application/json',
     success: function(results) {
       console.log(results);
+      console.log(results.items);
       callback(results.items);
     },
     error: function(error, response) {
       console.error('This is an error', error);
-      console.log(url);
     },
 
   }); 
