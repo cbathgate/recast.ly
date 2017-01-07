@@ -8,7 +8,7 @@ describe ('Search', function() {
 
   var app, searchYouTubeStub;
   
-  xdescribe('when rendering live data from YouTube', function() {
+  describe('when rendering live data from YouTube', function() {
     beforeEach(function() {
       searchYouTubeStub = sinon.stub();
       searchYouTubeStub.onCall(0).yields(window.fakeVideoData);
@@ -22,6 +22,7 @@ describe ('Search', function() {
     it('should load live data when app is initialized', function() {
       var videoEntryTitleElements = scryRenderedDOMComponentsWithClass(app, 'video-list-entry-title');
       videoEntryTitleElements.forEach((videoEntryTitle, i) => {
+        console.log(videoEntryTitle);
         expect(videoEntryTitle.innerHTML).to.equal(fakeVideoData[i].snippet.title);
       });
     });

@@ -10,20 +10,27 @@ class App extends React.Component {
 
   youTubeSearchCallback(items) {
     this.setState({
+      video: items[0],
       videoList: items
     });
   }
 
-  componentDidMount() {
-    console.log('youtube searched');
-    var options = {
-      // query: this.state.search,
-      query: 'dogs',
+  createOptions () {
+    return {
+      query: this.state.search,
       max: 5,
       key: YOUTUBE_API_KEY
     };
+  }
+
+  componentDidMount() {
+    var boundCreateOptions = this.createOptions.bind(this);
+    let options = boundCreateOptions();
     this.props.searchYouTube(options, this.youTubeSearchCallback.bind(this));
-    // setInterval(this.youTubeSearchCallback.bind(this), 500);
+    setInterval(() => {
+      let options = boundCreateOptions();
+      return this.props.searchYouTube(options, this.youTubeSearchCallback.bind(this));
+    }, 500);
   }
 
   onVideoClick(video) {
@@ -46,7 +53,7 @@ class App extends React.Component {
           <VideoPlayer video={this.state.video} />
         </div>
         <div className="col-md-5">
-          <VideoList videos={this.state.videoList} state={this.state} onVideoClick={this.onVideoClick.bind(this)}/>
+          <VideoList videos={this.state.videoList} onVideoClick={this.onVideoClick.bind(this)}/>
         </div>
       </div>
     );
