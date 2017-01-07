@@ -7,13 +7,23 @@ class Search extends React.Component {
     event.preventDefault();
     let text = this._text;
     this.props.updateSearch(text.value);
+  }
+
+  handleSubmit() {
+    event.preventDefault();
+    let text = this._text;
+    this.props.updateSearch(text.value);
     text.value = '';
   }
 
   render() {
     return (
       <div className="search-bar form-inline">
-        <input className="form-control" type="text" value={this.props.search} ref={(input) => this._text = input} onChange={this.handleChange.bind(this)}/>
+        <input className="form-control" type="text" 
+                value={this.props.search} 
+                ref={(input) => this._text = input} 
+                onChange={this.handleChange.bind(this)} 
+                onSubmit={this.handleSubmit.bind(this)}/>
         <button className="btn hidden-sm-down">
           <span className="glyphicon glyphicon-search"></span>
         </button>

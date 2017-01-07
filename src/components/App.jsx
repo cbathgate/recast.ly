@@ -8,6 +8,10 @@ class App extends React.Component {
     };
   }
 
+  conponentWillMount() {
+    this.props.searchYouTube();
+  }
+
   onVideoClick(video) {
     this.setState({
       video: video
