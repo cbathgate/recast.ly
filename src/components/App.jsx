@@ -4,7 +4,7 @@ class App extends React.Component {
     this.state = {
       video: exampleVideoData[0],
       videoList: exampleVideoData,
-      search: ''
+      search: 'cute kittens'
     };
   }
 
