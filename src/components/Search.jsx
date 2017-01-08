@@ -1,18 +1,20 @@
 class Search extends React.Component {
   constructor(props) {
     super(props);
+    this.throttledSearch = _.throttle(this.props.searchYouTube, 500);
   }
 
   handleChange(event) {
     let text = this._text;
-    // this.props.updateSearch(text.value);
     this.props.updateSearch(event.target.value);
+    this.throttledSearch();
   }
 
   handleSubmit(event) {
     event.preventDefault();
     let text = this._text;
     this.props.updateSearch(text.value);
+    this.throttledSearch();
     text.value = '';
   }
 

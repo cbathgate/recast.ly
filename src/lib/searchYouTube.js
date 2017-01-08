@@ -1,5 +1,4 @@
 var searchYouTube = (options, callback) => {
-  // TODO
   return $.ajax({
     type: 'GET',
     url: `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=${options.max}&q=${options.query}&key=${options.key}&type=video&videoembeddable=true`,
@@ -10,7 +9,6 @@ var searchYouTube = (options, callback) => {
     error: function(error, response) {
       console.error('This is an error', error);
     },
-
   }); 
 };
 

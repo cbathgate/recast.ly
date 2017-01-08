@@ -15,7 +15,7 @@ class App extends React.Component {
     });
   }
 
-  createOptions () {
+  createOptions() {
     return {
       query: this.state.search,
       max: 5,
@@ -23,14 +23,13 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount() {
-    var boundCreateOptions = this.createOptions.bind(this);
-    let options = boundCreateOptions();
+  searchYouTube() {
+    let options = this.createOptions();
     this.props.searchYouTube(options, this.youTubeSearchCallback.bind(this));
-    setInterval(() => {
-      let options = boundCreateOptions();
-      return this.props.searchYouTube(options, this.youTubeSearchCallback.bind(this));
-    }, 500);
+  }
+
+  componentDidMount() {
+    this.searchYouTube();
   }
 
   onVideoClick(video) {
@@ -48,7 +47,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="container-fluid">
-        <Nav search={this.state.search} updateSearch={this.updateSearch.bind(this)}/>
+        <Nav search={this.state.search} searchYouTube={this.searchYouTube.bind(this)} updateSearch={this.updateSearch.bind(this)}/>
         <div className="row">
           <div className="col-md-7">
             <VideoPlayer video={this.state.video} />
